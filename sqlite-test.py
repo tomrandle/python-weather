@@ -2,7 +2,7 @@ import sqlite3
 import random
 import time
 
-sqlite_file = 'my_first_db.sqlite'
+sqlite_file = '../test.sqlite'
 table_name = 'readings'
 
 # Connecting to the database file
