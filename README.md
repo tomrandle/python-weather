@@ -1,6 +1,6 @@
 # Setup 
 
-- Follow installation guide here `https://github.com/adafruit/Adafruit_Python_BME280/blob/master/Adafruit_BME280.py`. BME280 Adafruit python library works for BMP280 too
+- Follow installation guide here `https://github.com/adafruit/Adafruit_Python_BME280/blob/master/Adafruit_BME280.py`. BME280 Adafruit python library works for BMP280 too.
 - Set up sqlite db with following schema: 
 
 	~~~~ 
@@ -17,7 +17,8 @@
 - Set up crontab with `sudo contab -e` => `* * * * * /usr/bin/python2.7 /home/pi/python-weather/mashup.py`
 
 
-# Wiring BMP280 Raspberry Pi Zero
+## Wiring BMP280 Raspberry Pi Zero
+
 
 
 #Notes 
