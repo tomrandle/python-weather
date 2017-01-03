@@ -26,6 +26,5 @@ hectopascals = pascals / 100
 c.execute("INSERT INTO READINGS (TIME,TEMPERATURE,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp}, 0, {pressure}, 0, 0)".\
 	format(temp = degrees, pressure = hectopascals))
 
-time.sleep(10)
 conn.commit()
 conn.close()
