@@ -6,7 +6,7 @@ from Adafruit_BME280 import *
 
 sensor = BME280(mode=BME280_OSAMPLE_8)
 
-sqlite_file = '../test.db'
+sqlite_file = '/home/pi/test.db'
 table_name = 'readings'
 
 # Connecting to the database file
