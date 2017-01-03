@@ -14,7 +14,7 @@
 	RAINFALL       FLOAT);
 	~~~~
 
-- Set up crontab with `sudo contab -e` => `* * * * * /usr/bin/python2.7 /home/pi/python-weather/mashup.py`
+- Set up crontab with `sudo contab -e` => `* * * * * /usr/bin/python2.7 /home/pi/python-weather/log-readings.py`
 
 
 ## Wiring BMP280 Raspberry Pi Zero
