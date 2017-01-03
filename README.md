@@ -19,7 +19,7 @@
 
 ## Wiring BMP280 Raspberry Pi Zero
 
-![How to connect sensor to raspberry pi](python-weather/wiring-bmp280-to-raspberry-pi.png?raw=true "How to connect BMP280 to raspbery pi")
+![How to connect sensor to raspberry pi](https://cloud.githubusercontent.com/assets/895664/21616960/b296341a-d1db-11e6-8e45-9ac64f2c4b09.png "How to connect BMP280 to raspbery pi")
 
 #Notes 
 
