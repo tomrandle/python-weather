@@ -7,6 +7,30 @@ from Adafruit_BME280 import *
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
 
+import Adafruit_DHT
+
+
+
+
+# Sensor should be set to Adafruit_DHT.DHT11,
+# Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302.
+DHTSensor = Adafruit_DHT.DHT11
+
+# Example using a Beaglebone Black with DHT sensor
+# connected to pin P8_11.
+# pin = 'P8_11'
+
+# Example using a Raspberry Pi with DHT sensor
+# connected to GPIO23.
+DHTPin = 4
+
+# Try to grab a sensor reading.  Use the read_retry method which will retry up
+# to 15 times to get a sensor reading (waiting 2 seconds between each retry).
+humidity, temperature = Adafruit_DHT.read_retry(DHTSensor, DHTPin)
+
+
+
+
 
 
 sensor = BME280(mode=BME280_OSAMPLE_8)
@@ -53,7 +77,7 @@ windspeedMetersPerSecond = rawWindReading
 c.execute("INSERT INTO READINGS (TIME,TEMPERATURE,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp}, 0, {pressure}, {windspeed}, 0)".\
 	format(temp = degrees, pressure = hectopascals, windspeed = windspeedMetersPerSecond))
 
-print windspeedMetersPerSecond
+print windspeedMetersPerSecond, temperature, humidity
 print "Sensor read"
 
 conn.commit()
