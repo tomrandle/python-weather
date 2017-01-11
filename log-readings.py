@@ -1,5 +1,4 @@
 import sqlite3
-import random
 import time
 
 from Adafruit_BME280 import *
@@ -74,8 +73,8 @@ windspeedMetersPerSecond = rawWindReading
 
 # Write to db
 
-c.execute("INSERT INTO READINGS (TIME,TEMPERATURE,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp}, 0, {pressure}, {windspeed}, 0)".\
-	format(temp = degrees, pressure = hectopascals, windspeed = windspeedMetersPerSecond))
+c.execute("INSERT INTO READINGS (TIME,TEMPERATURE,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp}, {humid}, {pressure}, {windspeed}, 0)".\
+	format(temp = temperature, pressure = hectopascals, windspeed = windspeedMetersPerSecond, humid = humidity))
 
 print windspeedMetersPerSecond, temperature, humidity
 print "Sensor read"
