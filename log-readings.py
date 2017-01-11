@@ -2,7 +2,7 @@ import sqlite3
 import time
 
 ##############
-# DHT Sensor #
+# DHT Sensor
 ##############
 
 import Adafruit_DHT
@@ -15,7 +15,7 @@ humidity, temperature = Adafruit_DHT.read_retry(DHTSensor, DHTPin)
 
 
 #################
-# BME280 Sensor #
+# BME280 Sensor
 #################
 
 from Adafruit_BME280 import *
@@ -31,7 +31,7 @@ hectopascals = pascals / 100
 
 
 ###########
-# MCP3008 #
+# MCP3008
 ###########
 
 import Adafruit_GPIO.SPI as SPI
@@ -53,7 +53,7 @@ windspeedMetersPerSecond = rawWindReading
 
 
 ###############
-# Write to DB #
+# Write to DB
 ###############
 
 # Connect to the database file
