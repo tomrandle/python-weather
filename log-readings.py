@@ -5,8 +5,9 @@
 import sqlite3
 import time
 
-
-# DHT Sensor
+##############
+# DHT Sensor #
+##############
 
 import Adafruit_DHT
 
@@ -17,7 +18,9 @@ DHTPin = 4
 humidity, temperature = Adafruit_DHT.read_retry(DHTSensor, DHTPin)
 
 
-# BME280 Sensor
+#################
+# BME280 Sensor #
+#################
 
 from Adafruit_BME280 import *
 
@@ -31,7 +34,9 @@ hectopascals = pascals / 100
 #humidity = sensor.read_humidity()
 
 
-# MCP3008
+###########
+# MCP3008 #
+###########
 
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
@@ -50,10 +55,11 @@ rawWindReading = mcp.read_adc(windChannel)
 
 windspeedMetersPerSecond = rawWindReading
 
+###############
+# Write to DB #
+###############
 
-# Write to DB
-
-# Connect to the database file
+# Connect
 
 sqlite_file = '/home/pi/weatherstation.db'
 table_name = 'readings'
@@ -62,7 +68,7 @@ conn = sqlite3.connect(sqlite_file)
 c = conn.cursor()
 
 
-# Write to db
+# Write
 
 c.execute("INSERT INTO READINGS (TIME,TEMPERATURE,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp}, {humid}, {pressure}, {windspeed}, 0)".\
 	format(temp = temperature, pressure = hectopascals, windspeed = windspeedMetersPerSecond, humid = humidity))
