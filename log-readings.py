@@ -106,7 +106,7 @@ rainfall = 0
 print 'Temperature (onewire): %.2f\n' % (OneWireTemp)
 print 'Temperature (DHT): %.2f\n' % (temperature)
 print 'Temperature (BMP): %.2f\n' % (degrees)
-print 'Humidity: %.1' % (humidity)
+print 'Humidity: %.1f' % (humidity)
 print 'Pressure: %.1f\n' % (hectopascals)
 print 'Windspeed %.1f\n' % (windspeedMetersPerSecond)
 print 'Rainfall %.2f\n' % (rainfall) 
