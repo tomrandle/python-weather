@@ -87,6 +87,7 @@ def read_temp():
 			return temp_c
 
 OneWireTemp = read_temp()
+print OneWireTemp
 
 
 ###############
