@@ -77,9 +77,9 @@ def temp_raw():
 
 def read_temp():
 
-	lines[1] = temp_raw()
+	lines = temp_raw()
 
-	x = lines.split("t=")
+	x = lines[1].split("t=")
 	print x[1]
 	return x[1] 	
 	# while lines[0].strip()[-3:] != 'YES':
