@@ -16,8 +16,11 @@ DHTSensor = Adafruit_DHT.DHT11 #DHT22 when switch sensor
 
 DHTPin = 22
 
+print "Getting DHT sensor readings"
+
 humidity, temperature = Adafruit_DHT.read_retry(DHTSensor, DHTPin)
 
+print humidity, temperature
 
 #################
 # BME280 Sensor #
@@ -27,12 +30,16 @@ from Adafruit_BME280 import *
 
 BMPSensor = BME280(mode=BME280_OSAMPLE_8)
 
+print "\nGetting BMP Sensor readings"
+
 # Get sensor readings form BPM208
 
 degrees = BMPSensor.read_temperature()
 pascals = BMPSensor.read_pressure()
 
 hectopascals = pascals / 100
+
+print degrees, hectopascals
 
 
 ###########
@@ -48,11 +55,15 @@ MISO = 23
 MOSI = 24
 CS   = 25
 
+print "\nGetting MCP3008 readings"
+
 mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
 
 windChannel = 7
 
 rawWindReading = mcp.read_adc(windChannel)
+
+print rawWindReading
 
 windspeedMetersPerSecond = rawWindReading
 
@@ -60,6 +71,7 @@ windspeedMetersPerSecond = rawWindReading
 # One wire Temperature sensor #
 ###########
 
+print "\nGetting 1wire reading"
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 
@@ -85,12 +97,15 @@ def read_temp():
 
 OneWireTemp = read_temp()
 
+print OneWireTemp
 
 ###############
 # Write to DB #
 ###############
 
 # Connect
+
+print "Connecting to DB"
 
 sqlite_file = '/home/pi/weatherstation.db'
 table_name = 'readings'
@@ -111,6 +126,7 @@ print 'Pressure: %.1f\n' % (hectopascals)
 print 'Windspeed %.1f\n' % (windspeedMetersPerSecond)
 print 'Rainfall %.2f\n' % (rainfall) 
 
+print "Writing to DB"
 
 c.execute("INSERT INTO READINGS (TIME,TEMPERATURE1, TEMPERATURE2, TEMPERATURE3,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp1}, {temp2}, {temp3}, {humid}, {pressure}, {windspeed},0)".\
 	format(temp1 = OneWireTemp, temp2 = degrees, temp3 = temperature, pressure = hectopascals, windspeed = windspeedMetersPerSecond, humid = humidity))
