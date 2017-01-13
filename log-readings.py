@@ -77,7 +77,7 @@ def temp_raw():
 
 def read_temp():
 
-	lines = temp_raw()
+	lines[1] = temp_raw()
 
 	x = lines.split("t=")
 	print x[1]
