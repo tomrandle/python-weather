@@ -13,7 +13,7 @@ import Adafruit_DHT
 
 DHTSensor = Adafruit_DHT.DHT11 #DHT22 when switch sensor
 
-DHTPin = 4
+DHTPin = 22
 
 humidity, temperature = Adafruit_DHT.read_retry(DHTSensor, DHTPin)
 
