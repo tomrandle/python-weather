@@ -66,10 +66,13 @@ os.system('modprobe w1-therm')
 
 temp_sensor = '/sys/bus/w1/devices/28-00000556acc0/w1_slave'
 
+print 'running onewire'
+
 def temp_raw():
 	f = open(temp_sensor, 'r')
 	lines = f.readlines()
 	f.close()
+	print lines
 	return lines
 
 def read_temp():
