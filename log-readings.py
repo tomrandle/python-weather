@@ -106,7 +106,7 @@ c = conn.cursor()
 c.execute("INSERT INTO READINGS (TIME,TEMPERATURE,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp}, {humid}, {pressure}, {windspeed}, 0)".\
 	format(temp = OneWireTemp, pressure = hectopascals, windspeed = windspeedMetersPerSecond, humid = humidity))
 
-print pressure, windspeedMetersPerSecond, temperature, humidity
+print hectopascals, windspeedMetersPerSecond, temperature, humidity
 
 conn.commit()
 conn.close()
