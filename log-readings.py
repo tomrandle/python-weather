@@ -78,18 +78,21 @@ def temp_raw():
 def read_temp():
 
 	lines = temp_raw()
-	
-	while lines[0].strip()[-3:] != 'YES':
-		time.sleep(0.2)
-		lines = temp_raw()
-		temp_output = lines[1].find('t=')
 
-		if temp_output != -1:
-			print 'found temp'
-			temp_string = lines[1].strip()[temp_output+2:]
-			print temp_string
-			temp_c = float(temp_string) / 1000.0
-			return temp_c
+	x = lines.split("t=")
+	print x[1]
+	return x[1] 	
+	# while lines[0].strip()[-3:] != 'YES':
+	# 	time.sleep(0.2)
+	# 	lines = temp_raw()
+	# 	temp_output = lines[1].find('t=')
+
+	# 	if temp_output != -1:
+	# 		print 'found temp'
+	# 		temp_string = lines[1].strip()[temp_output+2:]
+	# 		print temp_string
+	# 		temp_c = float(temp_string) / 1000.0
+	# 		return temp_c
 
 
 OneWireTemp = read_temp()
