@@ -70,7 +70,6 @@ def temp_raw():
 	f = open(temp_sensor, 'r')
 	lines = f.readlines()
 	f.close()
-	print lines
 	return lines
 
 def read_temp():
@@ -78,7 +77,6 @@ def read_temp():
 	lines = temp_raw()
 
 	x = lines[1].split("t=")
-	print x[1]
 	
 	temp_c = float(x[1]) / 1000.0
 	
@@ -103,10 +101,12 @@ c = conn.cursor()
 
 # Write
 
+rainfall = 0
+
 c.execute("INSERT INTO READINGS (TIME,TEMPERATURE,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp}, {humid}, {pressure}, {windspeed}, 0)".\
 	format(temp = OneWireTemp, pressure = hectopascals, windspeed = windspeedMetersPerSecond, humid = humidity))
 
-print hectopascals, windspeedMetersPerSecond, temperature, humidity
-
 conn.commit()
 conn.close()
+
+print 'Temperature: %d /n Humidity: %d /n Pressure: %d /n Windspeed %d /n Rainfall %d' % (OneWireTemp, humidity, hectopascals, windspeedMetersPerSecond, rainfall) 
