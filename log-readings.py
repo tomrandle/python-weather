@@ -23,38 +23,38 @@ humidity, temperature = Adafruit_DHT.read_retry(DHTSensor, DHTPin)
 # BME280 Sensor #
 #################
 
-from Adafruit_BME280 import *
+# from Adafruit_BME280 import *
 
-BMPSensor = BME280(mode=BME280_OSAMPLE_8)
+# BMPSensor = BME280(mode=BME280_OSAMPLE_8)
 
-# Get sensor readings form BPM208
+# # Get sensor readings form BPM208
 
-degrees = BMPSensor.read_temperature()
-pascals = BMPSensor.read_pressure()
-hectopascals = pascals / 100
-#humidity = sensor.read_humidity()
+# degrees = BMPSensor.read_temperature()
+# pascals = BMPSensor.read_pressure()
+# hectopascals = pascals / 100
+# #humidity = sensor.read_humidity()
 
 
 ###########
 # MCP3008 #
 ###########
 
-# import Adafruit_GPIO.SPI as SPI
-# import Adafruit_MCP3008
+import Adafruit_GPIO.SPI as SPI
+import Adafruit_MCP3008
 
-# # Software SPI configuration:
-# CLK  = 18
-# MISO = 23
-# MOSI = 24
-# CS   = 25
+# Software SPI configuration:
+CLK  = 18
+MISO = 23
+MOSI = 24
+CS   = 25
 
-# mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
 
-# windChannel = 7
+windChannel = 7
 
-# rawWindReading = mcp.read_adc(windChannel)
+rawWindReading = mcp.read_adc(windChannel)
 
-# windspeedMetersPerSecond = rawWindReading
+windspeedMetersPerSecond = rawWindReading
 
 ###########
 # One wire Temperature sensor #
