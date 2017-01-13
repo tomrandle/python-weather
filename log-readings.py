@@ -101,12 +101,16 @@ c = conn.cursor()
 
 # Write
 
+
+
 rainfall = 0
 
-c.execute("INSERT INTO READINGS (TIME,TEMPERATURE1, TEMPERATURE2, TEMPERATURE3,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp1}, {temp2}, {temp3}, {humid}, {pressure}, {windspeed}, 0)".\
+print 'Temperature (onewire): %.2f\nTemperature (DHT): %.2f\nTemperature (BMP): %.2f\n Humidity: %.1f\n Pressure: %.1f\n Windspeed %.1f\n Rainfall %.2f' % (OneWireTemp, temperature, degrees, humidity, hectopascals, windspeedMetersPerSecond, rainfall) 
+
+
+c.execute("INSERT INTO READINGS (TIME,TEMPERATURE1, TEMPERATURE2, TEMPERATURE3,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp1}, {temp2}, {temp3}, {humid}, {pressure}, {windspeed},0)".\
 	format(temp1 = OneWireTemp, temp2 = degrees, temp3 = temperature, pressure = hectopascals, windspeed = windspeedMetersPerSecond, humid = humidity))
 
 conn.commit()
 conn.close()
 
-print 'Temperature (onewire): %.2f\nTemperature (DHT): %.2f\nTemperature (BMP): %.2f\n Humidity: %.1f\n Pressure: %.1f\n Windspeed %.1f\n Rainfall %.2f' % (OneWireTemp, temperature, degrees, humidity, hectopascals, windspeedMetersPerSecond, rainfall) 
