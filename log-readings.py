@@ -31,8 +31,8 @@ BMPSensor = BME280(mode=BME280_OSAMPLE_8)
 
 degrees = BMPSensor.read_temperature()
 pascals = BMPSensor.read_pressure()
+
 hectopascals = pascals / 100
-#humidity = sensor.read_humidity()
 
 
 ###########
@@ -103,10 +103,10 @@ c = conn.cursor()
 
 rainfall = 0
 
-c.execute("INSERT INTO READINGS (TIME,TEMPERATURE,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp}, {humid}, {pressure}, {windspeed}, 0)".\
-	format(temp = OneWireTemp, pressure = hectopascals, windspeed = windspeedMetersPerSecond, humid = humidity))
+c.execute("INSERT INTO READINGS (TIME,TEMPERATURE1, TEMPERATURE2, TEMPERATURE3,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp1}, {temp2}, {temp3}, {humid}, {pressure}, {windspeed}, 0)".\
+	format(temp1 = OneWireTemp, temp2 = degrees, temp3 = temperature, pressure = hectopascals, windspeed = windspeedMetersPerSecond, humid = humidity))
 
 conn.commit()
 conn.close()
 
-print 'Temperature: %.2f \n Humidity: %.1f \n Pressure: %.1f \n Windspeed %.1f \n Rainfall %.2f' % (OneWireTemp, humidity, hectopascals, windspeedMetersPerSecond, rainfall) 
+print 'Temperature (onewire): %.2f\nTemperature (DHT): %.2f\nTemperature (BMP): %.2f\n Humidity: %.1f\n Pressure: %.1f\n Windspeed %.1f\n Rainfall %.2f' % (OneWireTemp, temperature, degrees, humidity, hectopascals, windspeedMetersPerSecond, rainfall) 

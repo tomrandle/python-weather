@@ -31,13 +31,17 @@ https://www.modmypi.com/blog/ds18b20-one-wire-digital-temperature-sensor-and-the
 
 	~~~~ 
 	CREATE TABLE READINGS(
-	ID INTEGER PRIMARY KEY,
-	TIME           DATETIME    NOT NULL,
-	TEMPERATURE    FLOAT,
-	HUMIDITY       FLOAT,
-	PRESSURE       FLOAT,
-	WINDSPEED	  FLOAT,
-	RAINFALL       FLOAT);
+   ID INTEGER PRIMARY KEY,
+   TIME           DATETIME    NOT NULL,
+   TEMPERATURE1    FLOAT,
+   TEMPERATURE2    FLOAT,
+   TEMPERATURE3    FLOAT,
+   HUMIDITY       FLOAT,
+   PRESSURE       FLOAT,
+   WINDSPEED	  FLOAT,
+   RAINFALL       FLOAT
+);
+
 	~~~~
 
 # Set up crontab
