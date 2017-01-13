@@ -109,4 +109,4 @@ c.execute("INSERT INTO READINGS (TIME,TEMPERATURE,HUMIDITY,PRESSURE, WINDSPEED, 
 conn.commit()
 conn.close()
 
-print 'Temperature: %d /n Humidity: %d /n Pressure: %d /n Windspeed %d /n Rainfall %d' % (OneWireTemp, humidity, hectopascals, windspeedMetersPerSecond, rainfall) 
+print 'Temperature: %.2f \n Humidity: %.1f \n Pressure: %.1f \n Windspeed %.1f \n Rainfall %.2f' % (OneWireTemp, humidity, hectopascals, windspeedMetersPerSecond, rainfall) 
