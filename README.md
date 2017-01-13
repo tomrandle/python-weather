@@ -14,6 +14,17 @@ Follow steps here: https://learn.adafruit.com/dht-humidity-sensing-on-raspberry-
 
 Follow steps here: https://learn.adafruit.com/raspberry-pi-analog-to-digital-converters/mcp3008
 
+
+
+#Set up 1-wire
+
+(remember swapped pins to free up 4 for 1wire)
+https://www.modmypi.com/blog/ds18b20-one-wire-digital-temperature-sensor-and-the-raspberry-pi
+
+
+
+
+
 # Set up DB
 
 - Set up sqlite db with following schema: 

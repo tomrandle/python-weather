@@ -4,6 +4,7 @@
 
 import sqlite3
 import time
+import os
 
 ##############
 # DHT Sensor #
@@ -55,6 +56,40 @@ rawWindReading = mcp.read_adc(windChannel)
 
 windspeedMetersPerSecond = rawWindReading
 
+###########
+# One wire Temperature sensor #
+###########
+
+os.system('modprobe w1-gpio')
+os.system('modprobe w1-therm')
+
+temp_sensor = ‘sys/bus/w1/devices/28-00000556acc0/w1_slave’
+
+def temp_raw():
+
+    f = open(temp_sensor, 'r')
+    lines = f.readlines()
+    f.close()
+    return lines
+
+def read_temp():
+
+    lines = temp_raw()
+    while lines[0].strip()[-3:] != 'YES':
+        time.sleep(0.2)
+        lines = temp_raw()
+
+ 		temp_output = lines[1].find('t=')
+
+	    if temp_output != -1:
+	        temp_string = lines[1].strip()[temp_output+2:]
+	        temp_c = float(temp_string) / 1000.0
+	        return temp_c
+
+
+OneWireTemp = read_temp()
+
+
 ###############
 # Write to DB #
 ###############
@@ -71,7 +106,7 @@ c = conn.cursor()
 # Write
 
 c.execute("INSERT INTO READINGS (TIME,TEMPERATURE,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp}, {humid}, {pressure}, {windspeed}, 0)".\
-	format(temp = temperature, pressure = hectopascals, windspeed = windspeedMetersPerSecond, humid = humidity))
+	format(temp = OneWireTemp, pressure = hectopascals, windspeed = windspeedMetersPerSecond, humid = humidity))
 
 print windspeedMetersPerSecond, temperature, humidity
 print "Sensor read"
