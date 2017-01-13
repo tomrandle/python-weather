@@ -23,16 +23,16 @@ humidity, temperature = Adafruit_DHT.read_retry(DHTSensor, DHTPin)
 # BME280 Sensor #
 #################
 
-# from Adafruit_BME280 import *
+from Adafruit_BME280 import *
 
-# BMPSensor = BME280(mode=BME280_OSAMPLE_8)
+BMPSensor = BME280(mode=BME280_OSAMPLE_8)
 
-# # Get sensor readings form BPM208
+# Get sensor readings form BPM208
 
-# degrees = BMPSensor.read_temperature()
-# pascals = BMPSensor.read_pressure()
-# hectopascals = pascals / 100
-# #humidity = sensor.read_humidity()
+degrees = BMPSensor.read_temperature()
+pascals = BMPSensor.read_pressure()
+hectopascals = pascals / 100
+#humidity = sensor.read_humidity()
 
 
 ###########
