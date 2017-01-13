@@ -66,8 +66,6 @@ os.system('modprobe w1-therm')
 
 temp_sensor = '/sys/bus/w1/devices/28-00000556acc0/w1_slave'
 
-print 'running onewire'
-
 def temp_raw():
 	f = open(temp_sensor, 'r')
 	lines = f.readlines()
@@ -88,7 +86,6 @@ def read_temp():
 
 
 OneWireTemp = read_temp()
-print OneWireTemp
 
 
 ###############
@@ -109,8 +106,7 @@ c = conn.cursor()
 c.execute("INSERT INTO READINGS (TIME,TEMPERATURE,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp}, {humid}, {pressure}, {windspeed}, 0)".\
 	format(temp = OneWireTemp, pressure = hectopascals, windspeed = windspeedMetersPerSecond, humid = humidity))
 
-print windspeedMetersPerSecond, temperature, humidity
-print "Sensor read"
+print pressure, windspeedMetersPerSecond, temperature, humidity
 
 conn.commit()
 conn.close()
