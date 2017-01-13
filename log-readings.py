@@ -82,9 +82,12 @@ def read_temp():
 		temp_output = lines[1].find('t=')
 
 		if temp_output != -1:
+			print 'found temp'
 			temp_string = lines[1].strip()[temp_output+2:]
+			print temp_string
 			temp_c = float(temp_string) / 1000.0
 			return temp_c
+
 
 OneWireTemp = read_temp()
 print OneWireTemp
