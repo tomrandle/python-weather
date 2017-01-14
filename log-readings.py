@@ -16,7 +16,7 @@ DHTSensor = Adafruit_DHT.AM2302
 
 DHTPin = 22
 
-print "Getting DHT sensor readings"
+print "Getting DHT sensor readings..."
 
 humidity, temperature = Adafruit_DHT.read_retry(DHTSensor, DHTPin)
 
@@ -30,7 +30,7 @@ from Adafruit_BME280 import *
 
 BMPSensor = BME280(mode=BME280_OSAMPLE_8)
 
-print "\nGetting BMP Sensor readings"
+print "Getting BMP Sensor readings..."
 
 # Get sensor readings form BPM208
 
@@ -55,7 +55,7 @@ MISO = 23
 MOSI = 24
 CS   = 25
 
-print "\nGetting MCP3008 readings"
+print "Getting MCP3008 readings..."
 
 mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
 
@@ -71,7 +71,7 @@ windspeedMetersPerSecond = rawWindReading
 # One wire Temperature sensor #
 ###########
 
-print "\nGetting 1wire reading"
+print "Getting 1wire reading..."
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 
@@ -105,7 +105,7 @@ print OneWireTemp
 
 # Connect
 
-print "Connecting to DB"
+print "Connecting to DB..."
 
 sqlite_file = '/home/pi/weatherstation.db'
 table_name = 'readings'
@@ -118,15 +118,15 @@ c = conn.cursor()
 
 rainfall = 0
 
-print 'Temperature (onewire): %.2f\n' % (OneWireTemp)
-print 'Temperature (DHT): %.2f\n' % (temperature)
-print 'Temperature (BMP): %.2f\n' % (degrees)
+print 'Temperature (onewire): %.2f' % (OneWireTemp)
+print 'Temperature (DHT): %.2f' % (temperature)
+print 'Temperature (BMP): %.2f' % (degrees)
 print 'Humidity: %.1f' % (humidity)
-print 'Pressure: %.1f\n' % (hectopascals)
-print 'Windspeed %.1f\n' % (windspeedMetersPerSecond)
-print 'Rainfall %.2f\n' % (rainfall) 
+print 'Pressure: %.1f' % (hectopascals)
+print 'Windspeed %.1f' % (windspeedMetersPerSecond)
+print 'Rainfall %.2f' % (rainfall) 
 
-print "Writing to DB"
+print "Writing to DB..."
 
 c.execute("INSERT INTO READINGS (TIME,TEMPERATURE1, TEMPERATURE2, TEMPERATURE3,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp1}, {temp2}, {temp3}, {humid}, {pressure}, {windspeed},0)".\
 	format(temp1 = OneWireTemp, temp2 = degrees, temp3 = temperature, pressure = hectopascals, windspeed = windspeedMetersPerSecond, humid = humidity))
