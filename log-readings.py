@@ -12,7 +12,7 @@ import os
 
 import Adafruit_DHT
 
-DHTSensor = Adafruit_DHT.DHT11 #DHT22 when switch sensor
+DHTSensor = Adafruit_DHT.AM2302 
 
 DHTPin = 22
 
