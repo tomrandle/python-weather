@@ -11,100 +11,19 @@ import sqlite3
 import time
 import os
 
-##############
-# DHT Sensor #
-##############
-
-import dht
-
-humidity, temperature = dht.getReadings()
 
 
-#################
-# BME280 Sensor #
-#################
-
-from Adafruit_BME280 import *
-
-BMPSensor = BME280(mode=BME280_OSAMPLE_8)
-
-print "Getting BMP Sensor readings..."
-
-# Get sensor readings form BPM208
-
-degrees = BMPSensor.read_temperature()
-pascals = BMPSensor.read_pressure()
-
-hectopascals = pascals / 100
-
-print degrees, hectopascals
+import getReadings
 
 
-###########
-# MCP3008 #
-###########
+humidity, temperature = getReadings.getDHTReadings()
 
-import Adafruit_GPIO.SPI as SPI
-import Adafruit_MCP3008
+degrees, hectopascals = getReadings.getBMEReadings()
 
-# Software SPI configuration:
-CLK  = 18
-MISO = 23
-MOSI = 24
-CS   = 25
+windspeedMetersPerSecond = getReadings.getWindspeedReading()
 
-print "Getting MCP3008 readings..."
+OneWireTemp = getReadings.getOneWireReading()
 
-mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
-
-windChannel = 7
-
-rawWindReading = mcp.read_adc(windChannel)
-
-print rawWindReading
-
-windspeedMetersPerSecond = rawWindReading
-
-
-# Convert wind voltage reading to speed (0.4-2V, 0 - 32.4 m/s)
-    
-windspeedMetersPerSecond = ((rawWindReading * 3.3 / 1024) - 0.4) * (32.4 / 1.6);
-
-if windspeedMetersPerSecond < 0:
-	windspeedMetersPerSecond = 0
-
-
-###########
-# One wire Temperature sensor #
-###########
-
-print "Getting 1wire reading..."
-os.system('modprobe w1-gpio')
-os.system('modprobe w1-therm')
-
-
-temp_sensor = '/sys/bus/w1/devices/28-00000556acc0/w1_slave'
-
-def temp_raw():
-	f = open(temp_sensor, 'r')
-	lines = f.readlines()
-	f.close()
-	return lines
-
-def read_temp():
-
-	lines = temp_raw()
-
-	x = lines[1].split("t=")
-	
-	temp_c = float(x[1]) / 1000.0
-	
-	return temp_c
-
-
-OneWireTemp = read_temp()
-
-print OneWireTemp
 
 ###############
 # Write to DB #
