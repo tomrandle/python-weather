@@ -2,18 +2,11 @@
 # -*- coding: utf-8 -*-
 
 
-import yaml
-
-import sqlite3
-import time
-
-
 ###############
 # Get Sensors #
 ###############
 
 import sensors
-
 
 humidity, temperature = sensors.getDHTReadings()
 
@@ -31,6 +24,8 @@ OneWireTemp = sensors.getOneWireReading()
 # Connect
 
 print "Connecting to DB..."
+
+import sqlite3
 
 sqlite_file = '/home/pi/weatherstation.db'
 table_name = 'readings'
@@ -65,16 +60,17 @@ conn.close()
 #######################
 
 import paho.mqtt.publish as publish
-
+import yaml
+import ssl
 
 with open("/home/pi/python-weather/config.yml", 'r') as ymlfile:
     cfg = yaml.load(ymlfile)
 
 channelID = cfg['channelID']
 apiKey = cfg['apiKey']
+
 mqttHost = "mqtt.thingspeak.com"
 
-import ssl
 tTransport = "websockets"
 tTLS = {'ca_certs':"/etc/ssl/certs/ca-certificates.crt",'tls_version':ssl.PROTOCOL_TLSv1}
 tPort = 443
