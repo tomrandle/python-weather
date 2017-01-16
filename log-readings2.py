@@ -12,7 +12,7 @@ import time
 
 
 
-import getReadings
+import sensors
 
 
 humidity, temperature = sensors.getDHTReadings()
