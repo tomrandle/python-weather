@@ -175,7 +175,7 @@ apiKey = cfg['apiKey']
 
 # Set useUnsecuredTCP to True to use the default MQTT port of 1883
 # This type of unsecured MQTT connection uses the least amount of system resources.
-useUnsecuredTCP = True
+useUnsecuredTCP = False
 
 # Set useUnsecuredWebSockets to True to use MQTT over an unsecured websocket on port 80.
 # Try this if port 1883 is blocked on your network.
@@ -184,7 +184,7 @@ useUnsecuredWebsockets = False
 # Set useSSLWebsockets to True to use MQTT over a secure websocket on port 443.
 # This type of connection will use slightly more system resources, but the connection
 # will be secured by SSL.
-useSSLWebsockets = False
+useSSLWebsockets = True
 
 ###   End of user configuration   ###
 
