@@ -1,6 +1,6 @@
 import Adafruit_DHT
 
-def getReading():
+def getReadings():
 
 	DHTSensor = Adafruit_DHT.AM2302 
 	DHTPin = 22
