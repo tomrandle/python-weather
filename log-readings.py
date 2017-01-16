@@ -6,6 +6,14 @@ import sqlite3
 import time
 import os
 
+
+from __future__ import print_function
+import paho.mqtt.publish as publish
+import psutil
+
+import yaml
+
+
 ##############
 # DHT Sensor #
 ##############
@@ -139,11 +147,7 @@ conn.close()
 # Write to thingspeak #
 #######################
 
-from __future__ import print_function
-import paho.mqtt.publish as publish
-import psutil
 
-import yaml
 
 with open("config.yml", 'r') as ymlfile:
     cfg = yaml.load(ymlfile)
