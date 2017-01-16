@@ -9,20 +9,19 @@ import yaml
 
 import sqlite3
 import time
-import os
 
 
 
 import getReadings
 
 
-humidity, temperature = getReadings.getDHTReadings()
+humidity, temperature = sensors.getDHTReadings()
 
-degrees, hectopascals = getReadings.getBMEReadings()
+degrees, hectopascals = sensors.getBMEReadings()
 
-windspeedMetersPerSecond = getReadings.getWindspeedReading()
+windspeedMetersPerSecond = sensors.getWindspeedReading()
 
-OneWireTemp = getReadings.getOneWireReading()
+OneWireTemp = sensors.getOneWireReading()
 
 
 ###############

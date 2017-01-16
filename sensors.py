@@ -89,6 +89,8 @@ def getWindspeedReading():
 # One wire Temperature sensor #
 ###############################
 
+import os
+
 def getOneWireReading():
 
 	print "Getting 1wire reading..."
