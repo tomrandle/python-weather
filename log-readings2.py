@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# from __future__ import print_function
-import paho.mqtt.publish as publish
 
 import yaml
-
 
 import sqlite3
 import time
 
 
+###############
+# Get Sensors #
+###############
 
 import sensors
 
@@ -64,11 +64,15 @@ conn.close()
 # Write to thingspeak #
 #######################
 
+import paho.mqtt.publish as publish
+
+
 with open("/home/pi/python-weather/config.yml", 'r') as ymlfile:
     cfg = yaml.load(ymlfile)
 
 channelID = cfg['channelID']
 apiKey = cfg['apiKey']
+mqttHost = "mqtt.thingspeak.com"
 
 import ssl
 tTransport = "websockets"
@@ -87,8 +91,3 @@ try:
 
 except Exception, e:
     print ("There was an error while publishing the data." + str(e))
-
-
-
-
-
