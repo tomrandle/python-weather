@@ -72,6 +72,15 @@ print rawWindReading
 
 windspeedMetersPerSecond = rawWindReading
 
+
+# Convert wind voltage reading to speed (0.4-2V, 0 - 32.4 m/s)
+    
+    windspeedMetersPerSecond = ((rawWindReading * 3.3 / 4095) - 0.4) * (32.4 / 1.6);
+    
+    if windspeedMetersPerSecond < 0:
+    	windspeedMetersPerSecond = 0
+
+
 ###########
 # One wire Temperature sensor #
 ###########
