@@ -5,7 +5,7 @@
 import Adafruit_DHT
 
 
-def getDHTReadings: 
+def getDHTReadings(): 
 
 	DHTSensor = Adafruit_DHT.AM2302 
 
@@ -25,7 +25,7 @@ def getDHTReadings:
 
 from Adafruit_BME280 import *
 
-def getBMEReadings:
+def getBMEReadings():
 
 	BMPSensor = BME280(mode=BME280_OSAMPLE_8)
 
@@ -50,7 +50,7 @@ def getBMEReadings:
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
 
-def getWindspeedReading:
+def getWindspeedReading():
 
 	# Software SPI configuration:
 	CLK  = 18
@@ -85,7 +85,7 @@ def getWindspeedReading:
 # One wire Temperature sensor #
 ###############################
 
-def getOneWireReading:
+def getOneWireReading():
 
 	print "Getting 1wire reading..."
 	os.system('modprobe w1-gpio')
