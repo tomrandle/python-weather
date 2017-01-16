@@ -146,7 +146,7 @@ conn.close()
 
 
 
-with open("config.yml", 'r') as ymlfile:
+with open("/home/pi/python-weather/config.yml", 'r') as ymlfile:
     cfg = yaml.load(ymlfile)
 
 
