@@ -204,7 +204,7 @@ topic = "channels/" + channelID + "/publish/" + apiKey
 
     
 # build the payload string
-tPayload = "field1=" + str(OneWireTemp) + "&field2=" + str(degrees)
+tPayload = "field1=" + str(OneWireTemp) + "&field2=" + str(degrees) + "&field3=" + str(temperature) + "&field4=" + str(humidity) + "&field5=" + str(hectopascals)  + "&field6=" + str(windspeedMetersPerSecond) + "&field7=" + str(rainfall)
 
 # attempt to publish this data to the topic 
 try:
