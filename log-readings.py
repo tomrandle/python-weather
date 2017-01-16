@@ -12,7 +12,7 @@ OneWireTemp = sensors.getOneWireReading()
 
 humidity, temperature = sensors.getDHTReadings()
 
-degrees, hectopascals = sensors.getBMEReadings()
+BMETemp, BMEPressure = sensors.getBMEReadings()
 
 windspeedMetersPerSecond = sensors.getWindspeedReading()
 
@@ -40,16 +40,16 @@ rainfall = 0
 
 print 'Temperature (onewire): %.2f' % (OneWireTemp)
 print 'Temperature (DHT): %.2f' % (temperature)
-print 'Temperature (BMP): %.2f' % (degrees)
+print 'Temperature (BMP): %.2f' % (BMETemp)
 print 'Humidity: %.1f' % (humidity)
-print 'Pressure: %.1f' % (hectopascals)
+print 'Pressure: %.1f' % (BMEPressure)
 print 'Windspeed %.1f' % (windspeedMetersPerSecond)
 print 'Rainfall %.2f' % (rainfall) 
 
 print "Writing to DB..."
 
 c.execute("INSERT INTO READINGS (TIME,TEMPERATURE1, TEMPERATURE2, TEMPERATURE3,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp1}, {temp2}, {temp3}, {humid}, {pressure}, {windspeed},0)".\
-	format(temp1 = OneWireTemp, temp2 = degrees, temp3 = temperature, pressure = hectopascals, windspeed = windspeedMetersPerSecond, humid = humidity))
+	format(temp1 = OneWireTemp, temp2 = BMETemp, temp3 = temperature, pressure = BMEPressure, windspeed = windspeedMetersPerSecond, humid = humidity))
 
 conn.commit()
 conn.close()
@@ -79,7 +79,7 @@ tPort = 443
 topic = "channels/" + channelID + "/publish/" + apiKey
     
 # build the payload string
-tPayload = "field1=" + str(OneWireTemp) + "&field2=" + str(degrees) + "&field3=" + str(temperature) + "&field4=" + str(humidity) + "&field5=" + str(hectopascals)  + "&field6=" + str(windspeedMetersPerSecond) + "&field7=" + str(rainfall)
+tPayload = "field1=" + str(OneWireTemp) + "&field2=" + str(BMETemp) + "&field3=" + str(temperature) + "&field4=" + str(humidity) + "&field5=" + str(BMEPressure)  + "&field6=" + str(windspeedMetersPerSecond) + "&field7=" + str(rainfall)
 
 # attempt to publish this data to the topic 
 try:
