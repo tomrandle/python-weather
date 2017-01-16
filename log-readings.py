@@ -10,7 +10,7 @@ import sensors
 
 OneWireTemp = sensors.getOneWireReading()
 
-humidity, temperature = sensors.getDHTReadings()
+humidity, DHTTemp = sensors.getDHTReadings()
 
 BMETemp, BMEPressure = sensors.getBMEReadings()
 
