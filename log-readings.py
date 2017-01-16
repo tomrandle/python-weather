@@ -1,18 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# from __future__ import print_function
+import paho.mqtt.publish as publish
+
+import yaml
+
 
 import sqlite3
 import time
 import os
-
-
-from __future__ import print_function
-import paho.mqtt.publish as publish
-import psutil
-
-import yaml
-
 
 ##############
 # DHT Sensor #
