@@ -210,9 +210,6 @@ tPayload = "field1=" + str(OneWireTemp) + "&field2=" + str(degrees)
 try:
     publish.single(topic, payload=tPayload, hostname=mqttHost, port=tPort, tls=tTLS, transport=tTransport)
 
-except (KeyboardInterrupt):
-    break
-
 except Exception, e:
     print ("There was an error while publishing the data." + str(e))
 
