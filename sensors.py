@@ -11,9 +11,9 @@ import Adafruit_DHT
 
 def getDHTReadings(): 
 
-	DHTSensor = Adafruit_DHT.AM2302 
-
 	DHTPin = 22
+
+	DHTSensor = Adafruit_DHT.AM2302 
 
 	print "Getting DHT sensor readings..."
 
