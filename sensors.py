@@ -37,14 +37,12 @@ def getBMEReadings():
 
 	# Get sensor readings form BPM208
 
-	degrees = BMPSensor.read_temperature()
-	pascals = BMPSensor.read_pressure()
+	temperature = BMPSensor.read_temperature()
+	pressure = BMPSensor.read_pressure() / 100 #mBar
 
-	hectopascals = pascals / 100
+	print temperature, pressure
 
-	print degrees, hectopascals
-
-	return degrees, hectopascals
+	return temperature, pressure
 
 
 ###########
@@ -72,17 +70,14 @@ def getWindspeedReading():
 
 	print rawWindReading
 
-	windspeedMetersPerSecond = rawWindReading
-
-
 	# Convert wind voltage reading to speed (0.4-2V, 0 - 32.4 m/s)
 	    
-	windspeedMetersPerSecond = ((rawWindReading * 3.3 / 1024) - 0.4) * (32.4 / 1.6);
+	windspeed = ((rawWindReading * 3.3 / 1024) - 0.4) * (32.4 / 1.6);
 
-	if windspeedMetersPerSecond < 0:
-		windspeedMetersPerSecond = 0
+	if windspeed < 0:
+		windspeed = 0
 
-	return windspeedMetersPerSecond
+	return windspeed
 
 
 ###############################
@@ -117,8 +112,8 @@ def getOneWireReading():
 		return temp_c
 
 
-	OneWireTemp = read_temp()
+	temperature = read_temp()
 
-	print OneWireTemp
+	print temperature
 
-	return OneWireTemp
+	return temperature
