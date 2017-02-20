@@ -12,6 +12,9 @@ OneWireTemp = sensors.getOneWireReading()
 
 # humidity, DHTTemp = sensors.getDHTReadings()
 
+humidity = 0
+DHTTemp = 0
+
 BMETemp, BMEPressure = sensors.getBMEReadings()
 
 windspeed = sensors.getWindspeedReading()
@@ -39,9 +42,9 @@ c = conn.cursor()
 rainfall = 0
 
 print 'Temperature (onewire): %.2f' % (OneWireTemp)
-# print 'Temperature (DHT): %.2f' % (DHTTemp)
+print 'Temperature (DHT): %.2f' % (DHTTemp)
 print 'Temperature (BMP): %.2f' % (BMETemp)
-# print 'Humidity: %.1f' % (humidity)
+print 'Humidity: %.1f' % (humidity)
 print 'Pressure: %.1f' % (BMEPressure)
 print 'Windspeed %.1f' % (windspeed)
 print 'Rainfall %.2f' % (rainfall) 
@@ -49,7 +52,7 @@ print 'Rainfall %.2f' % (rainfall)
 print "Writing to DB..."
 
 c.execute("INSERT INTO READINGS (TIME,TEMPERATURE1, TEMPERATURE2, TEMPERATURE3,HUMIDITY,PRESSURE, WINDSPEED, RAINFALL) VALUES (CURRENT_TIMESTAMP, {temp1}, {temp2}, {temp3}, {humid}, {pressure}, {windspeed},0)".\
-	format(temp1 = OneWireTemp, temp2 = BMETemp, temp3 = '', pressure = BMEPressure, windspeed = windspeed, humid = ''))
+	format(temp1 = OneWireTemp, temp2 = BMETemp, temp3 = DHTTemp, pressure = BMEPressure, windspeed = windspeed, humid = humidity))
 
 conn.commit()
 conn.close()
